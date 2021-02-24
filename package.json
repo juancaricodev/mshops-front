@@ -4,9 +4,44 @@
   "description": "react app",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development --env development"
   },
-  "keywords": ["react", "javascript", "webpack", "front end", "SASS", "marketplace"],
+  "keywords": [
+    "react",
+    "javascript",
+    "webpack",
+    "front end",
+    "SASS",
+    "marketplace"
+  ],
   "author": "<juancaricodev@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-router-dom": "5.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.13.1",
+    "@babel/preset-env": "7.13.5",
+    "@babel/preset-react": "7.12.13",
+    "babel-loader": "8.2.2",
+    "css-loader": "5.0.2",
+    "file-loader": "6.2.0",
+    "html-loader": "2.1.0",
+    "html-webpack-plugin": "5.2.0",
+    "mini-css-extract-plugin": "1.3.8",
+    "node-sass": "5.0.0",
+    "sass-loader": "11.0.1",
+    "standard": "16.0.3",
+    "webpack": "5.24.1",
+    "webpack-cli": "4.5.0",
+    "webpack-dev-server": "3.11.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "./node_modules/standard/eslintrc.json"
+    ]
+  }
 }
