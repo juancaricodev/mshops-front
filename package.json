@@ -6,7 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["react", "javascript", "webpack", "front end", "SASS", "marketplace"],
+  "keywords": [
+    "react",
+    "javascript",
+    "webpack",
+    "front end",
+    "SASS",
+    "marketplace"
+  ],
   "author": "<juancaricodev@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
 }
