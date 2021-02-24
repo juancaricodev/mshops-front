@@ -48,7 +48,12 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader
           },
           'css-loader',
-          'sass-loader'
+          {
+            loader: 'sass-loader',
+            options: {
+              additionalData: '@import "src/assets/styles/global.scss";'
+            }
+          }
         ]
       }
     ]
