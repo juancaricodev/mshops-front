@@ -1,0 +1,12 @@
+{
+  "name": "mshops-front",
+  "version": "1.0.0",
+  "description": "react app",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["react", "javascript", "webpack", "front end", "SASS", "marketplace"],
+  "author": "<juancaricodev@gmail.com>",
+  "license": "ISC"
+}
