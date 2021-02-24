@@ -7,13 +7,16 @@ import {
 } from 'react-router-dom'
 
 import Home from '../pages/Home'
+import Layout from '../layout/Layout'
 
 const App = () => {
   return (
     <Router>
-      <Switch>
-        <Route exact path='/' component={Home} />
-      </Switch>
+      <Layout>
+        <Switch>
+          <Route exact path='/' component={Home} />
+        </Switch>
+      </Layout>
     </Router>
   )
 }
