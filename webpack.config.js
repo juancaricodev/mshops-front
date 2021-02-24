@@ -61,10 +61,10 @@ module.exports = {
       filename: 'assets/[name].css'
     })
   ],
-	devServer: {
-		contentBase: path.join(__dirname, 'dist'),
-		compress: true,
-		historyApiFallback: true,
-		port: 3000
-	}
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    historyApiFallback: true,
+    port: 3000
+  }
 }
