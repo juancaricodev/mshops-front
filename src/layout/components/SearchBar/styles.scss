@@ -2,22 +2,33 @@
   padding: $space-3 0;
   display: flex;
   justify-content: center;
-  gap: 20px;
   align-items: center;
+  gap: 20px;
   background-color: $color-yellow;
 
-  form {
+  .searchbar-container {
     display: flex;
+    justify-content: center;
     align-items: center;
-    input {
-      @include input();
+    gap: 20px;
+    width: $cont-width;
 
-      &::placeholder {
-        color: $color-gray-medium;
+    form {
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      input {
+        @include input();
+
+        &::placeholder {
+          color: $color-gray-medium;
+        }
       }
-    }
-    button {
-      @include input-btn($color-gray-light)
+
+      button {
+        @include input-btn($color-gray-light);
+      }
     }
   }
 }

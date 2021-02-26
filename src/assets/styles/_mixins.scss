@@ -1,7 +1,7 @@
 // Search Input
 @mixin input {
   padding: 0 $space-2;
-  width: $input-x;
+  width: 100%;
   height: $input-y;
   font-size: 18px;
   border: none;
@@ -12,7 +12,7 @@
 // Buttons
 @mixin input-btn($bg-color) {
   height: $input-y;
-  width: $input-y;
+  width: 42px;
   background-color: $bg-color;
   border: none;
   border-radius: 0 $border-r $border-r 0;

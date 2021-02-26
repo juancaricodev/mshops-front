@@ -7,15 +7,17 @@ import Search from '../../../assets/img/ic_Search.png'
 const SearchBar = () => {
   return (
     <div className='searchbar'>
-      <div className='searchbar__logo'>
-        <img src={Logo} alt='Mercado Libre logo' />
+      <div className='searchbar-container'>
+        <div className='searchbar__logo'>
+          <img src={Logo} alt='Mercado Libre logo' />
+        </div>
+        <form>
+          <input type='text' placeholder='Nunca dejes de buscar' />
+          <button type='submit'>
+            <img src={Search} alt='search icon' />
+          </button>
+        </form>
       </div>
-      <form>
-        <input type='text' placeholder='Nunca dejes de buscar' />
-        <button type='submit'>
-          <img src={Search} alt='search icon' />
-        </button>
-      </form>
     </div>
   )
 }
