@@ -1,0 +1,31 @@
+// Search Input
+@mixin input {
+  padding: 0 $space-2;
+  width: $input-x;
+  height: $input-y;
+  font-size: 18px;
+  border: none;
+  border-radius: $border-r 0 0 $border-r;
+  outline: none;
+}
+
+// Buttons
+@mixin input-btn($bg-color) {
+  height: $input-y;
+  width: $input-y;
+  background-color: $bg-color;
+  border: none;
+  border-radius: 0 $border-r $border-r 0;
+  cursor: pointer;
+  outline: none;
+}
+@mixin btn($bg-color, $text-color) {
+  height: $input-y;
+  width: $input-x;
+  color: $text-color;
+  background-color: $bg-color;
+  border: none;
+  border-radius: $border-r;
+  cursor: pointer;
+  outline: none;
+}

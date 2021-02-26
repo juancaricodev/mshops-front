@@ -1,0 +1,23 @@
+.searchbar {
+  padding: $space-3 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  background-color: $color-yellow;
+
+  form {
+    display: flex;
+    align-items: center;
+    input {
+      @include input();
+
+      &::placeholder {
+        color: $color-gray-medium;
+      }
+    }
+    button {
+      @include input-btn($color-gray-light)
+    }
+  }
+}
