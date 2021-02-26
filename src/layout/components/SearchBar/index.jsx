@@ -1,8 +1,8 @@
 import React from 'react'
 
 import './styles.scss'
-import Logo from '../../../assets/img/Logo_ML.png'
-import Search from '../../../assets/img/ic_Search.png'
+import Logo from '@img/Logo_ML.png'
+import Search from '@img/ic_Search.png'
 
 const SearchBar = () => {
   return (

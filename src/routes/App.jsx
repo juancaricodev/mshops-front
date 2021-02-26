@@ -6,8 +6,8 @@ import {
   Route
 } from 'react-router-dom'
 
-import Home from '../pages/Home'
-import Layout from '../layout/Layout'
+import Home from '@pages/Home'
+import Layout from '@layout/Layout'
 
 const App = () => {
   return (

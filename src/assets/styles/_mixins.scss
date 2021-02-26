@@ -29,3 +29,10 @@
   cursor: pointer;
   outline: none;
 }
+
+// Container
+@mixin container() {
+  width: $cont-width;
+  min-height: 80vh;
+  background-color: $color-white;
+}
