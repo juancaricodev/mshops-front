@@ -14,7 +14,7 @@ const Product = ({ picture, title, price, freeShipping, ShippingIcon, location }
 
         <section className='product__content-description'>
           <div className='product__content-description-price'>
-            <p>$ {priceThousand}</p>
+            <p>&#36; {priceThousand}</p>
             {freeShipping && <img src={ShippingIcon} alt='free shipping' />}
           </div>
 
