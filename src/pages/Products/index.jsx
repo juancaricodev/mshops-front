@@ -1,7 +1,8 @@
 import React from 'react'
 
 import './styles.scss'
-import Shipping from '@img/ic_shipping.png'
+import ShippingIcon from '@img/ic_shipping.png'
+import Product from './components/Product'
 
 const products = [
   {
@@ -45,7 +46,7 @@ const products = [
   },
   {
     id: 'MLA688232389',
-    title: 'Guitarra Eléctrica Warlock B.c. Rich Mk1-wl-bwbk',
+    title: 'Guitarra Eléctrica Warlock B.c. Rich Mk1-wl-bwbk Guitarra Eléctrica Warlock B.c. Rich Mk1-wl-bwbk Guitarra Eléctrica Warlock B.c. Rich Mk1-wl-bwbk ',
     price: {
       currency: 'ARS',
       amount: 42397,
@@ -76,28 +77,15 @@ const Products = () => {
     <div className='products'>
       <ul>
         {products.map((product) => (
-          <li key={product.id}>
-            <section>
-              <img src={product.picture} alt={product.title} />
-            </section>
-
-            <section>
-              <div>
-                <p>$ {product.price.amount}</p>
-                {product.free_shipping && <img src={Shipping} alt='free shipping' />}
-              </div>
-
-              <p>{product.title}</p>
-
-              {/* <p>{product.condition}</p> */}
-            </section>
-
-            <section>
-              <p>{product.address}</p>
-            </section>
-
-            <span />
-          </li>
+          <Product
+            key={product.id}
+            picture={product.picture}
+            title={product.title}
+            price={product.price.amount}
+            freeShipping={product.free_shipping}
+            ShippingIcon={ShippingIcon}
+            location={product.address}
+          />
         ))}
       </ul>
     </div>

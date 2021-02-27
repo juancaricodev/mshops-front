@@ -32,8 +32,9 @@
 
 // Container
 @mixin container {
-  padding: $space-1;
-  width: calc(#{$cont-width} - #{$space-1} * 2);
+  // padding: $space-1;
+  // width: calc(#{$cont-width} - #{$space-1} * 2);
+  width: $cont-width;
   min-height: 80vh;
   background-color: $color-white;
   border-radius: $border-r;
