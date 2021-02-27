@@ -1,0 +1,37 @@
+.searchbar {
+  // TODO: delete margin line
+  margin-bottom: $space-1;
+  padding: $space-3 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: $color-yellow;
+
+  .searchbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: $cont-width;
+
+    form {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      box-shadow: $box-shadow;
+
+      input {
+        @include input();
+
+        &::placeholder {
+          color: $color-gray-medium;
+        }
+      }
+
+      button {
+        @include input-btn($color-gray-light);
+      }
+    }
+  }
+}

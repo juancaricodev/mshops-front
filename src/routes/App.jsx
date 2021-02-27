@@ -6,8 +6,10 @@ import {
   Route
 } from 'react-router-dom'
 
-import Home from '../pages/Home'
-import Layout from '../layout/Layout'
+import Home from '@pages/Home'
+import Layout from '@layout/Layout'
+import Products from '@pages/Products'
+import ProductDetail from '@pages/ProductDetail'
 
 const App = () => {
   return (
@@ -15,6 +17,9 @@ const App = () => {
       <Layout>
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route exact path='/products' component={Products} />
+          <Route exact path='/products' component={Products} />
+          <Route exact path='/productdetail' component={ProductDetail} />
         </Switch>
       </Layout>
     </Router>

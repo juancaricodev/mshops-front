@@ -1,0 +1,41 @@
+// Search Input
+@mixin input {
+  padding: 0 $space-2;
+  width: 100%;
+  height: $input-y;
+  font-size: 18px;
+  border: none;
+  border-radius: $border-r 0 0 $border-r;
+  outline: none;
+}
+
+// Buttons
+@mixin input-btn($bg-color) {
+  height: $input-y;
+  width: 42px;
+  background-color: $bg-color;
+  border: none;
+  border-radius: 0 $border-r $border-r 0;
+  cursor: pointer;
+  outline: none;
+}
+@mixin btn($bg-color, $text-color) {
+  height: $btn-y;
+  width: 100%;
+  font-size: $font-size-4;
+  color: $text-color;
+  background-color: $bg-color;
+  border: none;
+  border-radius: $border-r;
+  cursor: pointer;
+  outline: none;
+}
+
+// Container
+@mixin container {
+  width: $cont-width;
+  min-height: 80vh;
+  background-color: $color-white;
+  border-radius: $border-r;
+  box-shadow: $box-shadow-cont;
+}

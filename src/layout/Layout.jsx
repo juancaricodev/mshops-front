@@ -6,7 +6,9 @@ const Layout = ({ children }) => {
   return (
     <>
       <SearchBar />
-      {children}
+      <div className='page-container'>
+        {children}
+      </div>
     </>
   )
 }
