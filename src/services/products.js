@@ -1,7 +1,7 @@
-// const URL = 'https://polar-tundra-66918.herokuapp.com/api/items?q='
+const URL = 'https://polar-tundra-66918.herokuapp.com/api/items?q='
 
 const getAll = (query) => {
-  const data = fetch(`https://polar-tundra-66918.herokuapp.com/api/items?q=${query}`)
+  const data = fetch(`${URL}${query}`)
   const response = data.then(res => res.json())
   return response
 }
