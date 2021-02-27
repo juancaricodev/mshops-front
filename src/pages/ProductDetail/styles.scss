@@ -1,3 +1,68 @@
 .detail {
   @include container;
+
+  display: grid;
+  grid-template-columns: auto 30%;
+  grid-template-rows: auto auto;
+
+  &__cover {
+    grid-column: 1;
+    grid-row: 1;
+    padding: $space-1;
+
+    img {
+      width: $img-size-1;
+    }
+  }
+
+  &__info {
+    grid-column: 2;
+    grid-row: 1;
+    padding: $space-1;
+
+    &-status {
+      margin-bottom: $space-2;
+      font-size: $font-size-6;
+      color: $color-gray-dark;
+
+      span {
+        text-transform: capitalize;
+      }
+    }
+
+    &-title {
+      margin-bottom: $space-1;
+      font-size: $font-size-3;
+      font-weight: 700;
+    }
+
+    &-price {
+      margin-bottom: $space-1;
+      font-size: $font-size-1;
+
+      sup {
+        font-size: $font-size-3;
+      }
+    }
+
+    button {
+      @include btn($color-blue, $color-white);
+    }
+  }
+
+  &__description {
+    grid-column: 1;
+    grid-row: 2;
+    padding: $space-1;
+
+    &-title {
+      font-size: $font-size-2;
+      padding-bottom: $space-1;
+    }
+
+    &-content {
+      font-size: $font-size-5;
+      color: $color-gray-medium;
+    }
+  }
 }

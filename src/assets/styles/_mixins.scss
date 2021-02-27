@@ -20,8 +20,9 @@
   outline: none;
 }
 @mixin btn($bg-color, $text-color) {
-  height: $input-y;
-  width: $input-x;
+  height: $btn-y;
+  width: 100%;
+  font-size: $font-size-4;
   color: $text-color;
   background-color: $bg-color;
   border: none;
