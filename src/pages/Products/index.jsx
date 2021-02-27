@@ -23,7 +23,7 @@ const Products = () => {
       .getAll(search)
       .then(res => setProducts(res.items))
       .catch(err => console.error(err))
-  }, [])
+  }, [query])
 
   return (
     <div className='products'>

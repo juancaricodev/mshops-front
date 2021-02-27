@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import './styles.scss'
 import Logo from '@img/Logo_ML.png'
@@ -9,9 +9,12 @@ import Search from '@img/ic_Search.png'
 const SearchBar = () => {
   const [search, setSearch] = useState('')
 
+  const history = useHistory()
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('Searching...', search)
+    history.push(`/items?search=${search}`)
+    setSearch('')
   }
 
   const searchChange = (e) => {
