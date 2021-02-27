@@ -5,7 +5,9 @@ import './styles.scss'
 const Home = () => {
   return (
     <div className='home'>
-      Hello World!
+      <p>
+        ¡Bienvenidos a Mercado Libre!
+      </p>
     </div>
   )
 }

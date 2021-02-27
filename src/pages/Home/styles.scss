@@ -1,3 +1,12 @@
 .home {
-  text-decoration: underline;
+  @include container;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: $font-size-1;
+    color: $color-blue;
+  }
 }
