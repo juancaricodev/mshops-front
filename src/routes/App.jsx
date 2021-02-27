@@ -9,6 +9,7 @@ import {
 import Home from '@pages/Home'
 import Layout from '@layout/Layout'
 import Products from '@pages/Products'
+import ProductDetail from '@pages/ProductDetail'
 
 const App = () => {
   return (
@@ -17,6 +18,8 @@ const App = () => {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/products' component={Products} />
+          <Route exact path='/products' component={Products} />
+          <Route exact path='/productdetail' component={ProductDetail} />
         </Switch>
       </Layout>
     </Router>
