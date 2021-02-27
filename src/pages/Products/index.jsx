@@ -1,8 +1,9 @@
 import React from 'react'
 
 import './styles.scss'
+import Shipping from '@img/ic_shipping.png'
 
-const data = [
+const products = [
   {
     id: 'MLA901209224',
     title: 'Plano Para Luthier B.c.rich Stealth ( A Escala Real)',
@@ -73,7 +74,32 @@ const data = [
 const Products = () => {
   return (
     <div className='products'>
-      Products
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>
+            <section>
+              <img src={product.picture} alt={product.title} />
+            </section>
+
+            <section>
+              <div>
+                <p>$ {product.price.amount}</p>
+                {product.free_shipping && <img src={Shipping} alt='free shipping' />}
+              </div>
+
+              <p>{product.title}</p>
+
+              {/* <p>{product.condition}</p> */}
+            </section>
+
+            <section>
+              <p>{product.address}</p>
+            </section>
+
+            <span />
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
