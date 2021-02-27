@@ -28,7 +28,7 @@ const Products = () => {
   return (
     <div className='products'>
       <ul>
-        {products.map((product) => (
+        {products.slice(0, 4).map((product) => (
           <Product
             key={product.id}
             picture={product.picture}
