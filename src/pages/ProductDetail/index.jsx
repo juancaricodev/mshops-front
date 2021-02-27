@@ -4,27 +4,8 @@ import { useParams } from 'react-router-dom'
 import './styles.scss'
 import detailService from '@services/detail'
 
-// const product = {
-//   id: 'MLA876190028',
-//   title: 'Guitarra Electrica Ibanez Rg350dxz',
-//   price: {
-//     currency: 'ARS',
-//     amount: 82190,
-//     decimals: 0.9400000000023283
-//   },
-//   picture: 'http://http2.mlstatic.com/D_745271-MLA43336454342_092020-O.jpg',
-//   condition: 'used',
-//   free_shipping: true,
-//   sold_quantity: 243,
-//   description: 'Ibanez rg350dxz indonesia. Floyd. Muy buen estado, recién calibrada, con funda. Ibanez rg350dxz indonesia. Floyd. Muy buen estado, recién calibrada, con funda. Ibanez rg350dxz indonesia. Floyd. Muy buen estado, recién calibrada, con funda.'
-// }
-
-// const useQuery = () => {
-//   return new URLSearchParams(useLocation().search)
-// }
-
 const ProductDetail = () => {
-  const [product, setProduct] = useState([])
+  const [product, setProduct] = useState({})
 
   const { id } = useParams()
 
@@ -35,8 +16,9 @@ const ProductDetail = () => {
       .catch(err => console.error(err))
   }, [])
 
-  // const priceThousand = product.price.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-  // const decimals = Math.round(product.price.decimals * 100)
+  const priceThousand = product.price?.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+  // const decimals = product.price?.decimals.toFixed(2)
+  // const dec = decimals * 100
 
   return (
     <div className='detail'>
@@ -53,10 +35,11 @@ const ProductDetail = () => {
           {product.title}
         </div>
 
-        {/* <div className='detail__info-price'>
+        <div className='detail__info-price'>
           &#36; {priceThousand}
-          <sup>{decimals}</sup>
-        </div> */}
+          {/* <sup>{decimals === '0' ? '00' : decimals}</sup> */}
+          {/* <sup>{dec}</sup> */}
+        </div>
 
         <button type='button'>Comprar</button>
       </section>

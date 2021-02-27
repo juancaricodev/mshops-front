@@ -17,17 +17,12 @@ const Products = () => {
   const query = getQueryParams()
 
   useEffect(() => {
-    let mounted = true
     const search = query.get('search')
 
-    if (mounted) {
-      productsService
-        .getAll(search)
-        .then(res => setProducts(res.items))
-        .catch(err => console.error(err))
-    }
-
-    return () => (mounted = false)
+    productsService
+      .getAll(search)
+      .then(res => setProducts(res.items))
+      .catch(err => console.error(err))
   }, [query])
 
   return (
