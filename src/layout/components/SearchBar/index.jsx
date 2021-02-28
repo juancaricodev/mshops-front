@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 
 import './styles.scss'
 import Logo from '@img/Logo_ML.png'
@@ -10,21 +10,21 @@ const SearchBar = () => {
   const [search, setSearch] = useState('')
 
   const history = useHistory()
+  const location = useLocation()
 
-  const searchQuery = new URLSearchParams(history.location.search).get('search')
+  const searchQuery = new URLSearchParams(location.search).get('search')
 
   useEffect(() => {
-    setSearch(searchQuery)
+    location.pathname === '/items' && setSearch(searchQuery)
+    location.pathname.includes('/items/') && setSearch('')
 
     return () => setSearch('')
-  }, [history.location.search])
+  }, [location.search])
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
     search.length > 0 && history.push(`/items?search=${search}`)
-    // setSearch('')
-    console.log(history.location)
   }
 
   const searchChange = (e) => {
