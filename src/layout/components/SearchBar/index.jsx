@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Link, useHistory } from 'react-router-dom'
 
@@ -11,11 +11,20 @@ const SearchBar = () => {
 
   const history = useHistory()
 
+  const searchQuery = new URLSearchParams(history.location.search).get('search')
+
+  useEffect(() => {
+    setSearch(searchQuery)
+
+    return () => setSearch('')
+  }, [history.location.search])
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
     search.length > 0 && history.push(`/items?search=${search}`)
-    setSearch('')
+    // setSearch('')
+    console.log(history.location)
   }
 
   const searchChange = (e) => {
