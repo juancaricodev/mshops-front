@@ -7,23 +7,23 @@ import ShippingIcon from '@img/ic_shipping.png'
 import Product from './components/Product'
 import productsService from '@services/products'
 
-const getQueryParams = () => {
-  return new URLSearchParams(useLocation().search)
-}
-
 const Products = () => {
   const [products, setProducts] = useState([])
+  const [query, setQuery] = useState()
 
-  const query = getQueryParams()
+  const querySearch = new URLSearchParams(useLocation().search)
 
   useEffect(() => {
-    const search = query.get('search')
+    const queryString = querySearch.get('search')
+    setQuery(queryString)
 
     productsService
-      .getAll(search)
+      .getAll(query)
       .then(res => setProducts(res.items))
       .catch(err => console.error(err))
-  }, [query])
+
+    return () => setQuery()
+  }, [querySearch])
 
   return (
     <div className='products'>
