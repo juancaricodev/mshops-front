@@ -15,7 +15,8 @@ const Products = () => {
 
   useEffect(() => {
     const queryString = querySearch.get('search')
-    setQuery(queryString)
+
+    queryString.length > 0 && setQuery(queryString)
 
     productsService
       .getAll(query)
