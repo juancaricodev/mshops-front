@@ -13,7 +13,8 @@ const SearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    history.push(`/items?search=${search}`)
+
+    search.length > 0 && history.push(`/items?search=${search}`)
     setSearch('')
   }
 
