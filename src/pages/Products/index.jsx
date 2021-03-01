@@ -6,10 +6,12 @@ import './styles.scss'
 import ShippingIcon from '@img/ic_shipping.png'
 import Product from './components/Product'
 import productsService from '@services/products'
+import format from '@utils/formatAccents'
 
 const Products = () => {
   const [products, setProducts] = useState([])
   const [query, setQuery] = useState()
+  const [queryFormat, setQueryFormat] = useState()
 
   const querySearch = new URLSearchParams(useLocation().search)
 
@@ -18,8 +20,11 @@ const Products = () => {
 
     queryString.length > 0 && setQuery(queryString)
 
+    query && Promise.resolve(format(query))
+      .then(res => setQueryFormat(res))
+
     productsService
-      .getAll(query)
+      .getAll(queryFormat)
       .then(res => setProducts(res.items))
       .catch(err => console.error(err))
 

@@ -17,7 +17,8 @@ module.exports = {
       '@layout': path.resolve(__dirname, 'src/layout'),
       '@routes': path.resolve(__dirname, 'src/routes'),
       '@pages': path.resolve(__dirname, 'src/pages'),
-      '@services': path.resolve(__dirname, 'src/services')
+      '@services': path.resolve(__dirname, 'src/services'),
+      '@utils': path.resolve(__dirname, 'src/utils')
     }
   },
   module: {
