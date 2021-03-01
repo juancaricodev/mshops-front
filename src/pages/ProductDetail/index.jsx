@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom'
 import './styles.scss'
 import detailService from '@services/detail'
 import Spinner from '@utils/components/Spinner'
+import { formatAmount, formatDecimals } from '@utils/functions/formatNumbers'
 
 const ProductDetail = () => {
   const [product, setProduct] = useState({})
@@ -27,8 +28,11 @@ const ProductDetail = () => {
   useEffect(() => {
     Object.keys(product).length > 0 && setLoading(false)
 
-    setDecimals(Math.round(product.price?.decimals * 100))
-    setAmount(product.price?.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'))
+    product.price && Promise.resolve(formatDecimals(product.price.decimals))
+      .then(res => setDecimals(res))
+
+    product.price && Promise.resolve(formatAmount(product.price.amount))
+      .then(res => setAmount(res))
   }, [product])
 
   // const priceThousand = product.price?.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
