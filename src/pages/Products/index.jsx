@@ -23,7 +23,7 @@ const Products = () => {
     query && Promise.resolve(format(query))
       .then(res => setQueryFormat(res))
 
-    productsService
+    queryFormat && productsService
       .getAll(queryFormat)
       .then(res => setProducts(res.items))
       .catch(err => console.error(err))
