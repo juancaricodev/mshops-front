@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 
 import './styles.scss'
 import ShippingIcon from '@img/ic_shipping.png'
@@ -18,11 +18,14 @@ const Products = () => {
   const [noMatch, setNoMatch] = useState(false)
 
   const querySearch = new URLSearchParams(useLocation().search)
+  const history = useHistory()
 
   useEffect(() => {
     const queryString = querySearch.get('search')
 
-    queryString.length > 0 && setQuery(queryString)
+    queryString.length > 0
+      ? setQuery(queryString)
+      : history.push('/')
 
     query && Promise.resolve(format(query))
       .then(res => setQueryFormat(res))
@@ -38,7 +41,7 @@ const Products = () => {
   useEffect(() => {
     Object.keys(products).length > 0 && setLoading(false)
 
-    if (Object.keys(products).length > 0 && !products.items.length > 0) {
+    if (!products.items?.length > 0) {
       setNoMatch(true)
     } else {
       setNoMatch(false)
