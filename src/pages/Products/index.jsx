@@ -7,11 +7,13 @@ import ShippingIcon from '@img/ic_shipping.png'
 import Product from './components/Product'
 import productsService from '@services/products'
 import format from '@utils/formatAccents'
+import Spinner from '@utils/components/Spinner'
 
 const Products = () => {
   const [products, setProducts] = useState([])
   const [query, setQuery] = useState()
   const [queryFormat, setQueryFormat] = useState()
+  const [loading, setLoading] = useState(true)
 
   const querySearch = new URLSearchParams(useLocation().search)
 
@@ -31,22 +33,32 @@ const Products = () => {
     return () => setQuery()
   }, [querySearch])
 
+  useEffect(() => {
+    products.length > 0 && setLoading(false)
+  }, [products])
+
   return (
     <div className='products'>
-      <ul>
-        {products.slice(0, 4).map((product) => (
-          <Product
-            key={product.id}
-            id={product.id}
-            picture={product.picture}
-            title={product.title}
-            price={product.price.amount}
-            freeShipping={product.free_shipping}
-            ShippingIcon={ShippingIcon}
-            location={product.address}
-          />
-        ))}
-      </ul>
+      {
+        loading
+          ? <Spinner />
+          : (
+            <ul>
+              {products.slice(0, 4).map((product) => (
+                <Product
+                  key={product.id}
+                  id={product.id}
+                  picture={product.picture}
+                  title={product.title}
+                  price={product.price.amount}
+                  freeShipping={product.free_shipping}
+                  ShippingIcon={ShippingIcon}
+                  location={product.address}
+                />
+              ))}
+            </ul>
+            )
+      }
     </div>
   )
 }
