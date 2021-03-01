@@ -8,6 +8,8 @@ import Spinner from '@utils/components/Spinner'
 const ProductDetail = () => {
   const [product, setProduct] = useState({})
   const [loading, setLoading] = useState(true)
+  const [decimals, setDecimals] = useState()
+  const [amount, setAmount] = useState()
 
   const { id } = useParams()
   const history = useHistory()
@@ -24,9 +26,12 @@ const ProductDetail = () => {
 
   useEffect(() => {
     Object.keys(product).length > 0 && setLoading(false)
+
+    setDecimals(Math.round(product.price?.decimals * 100))
+    setAmount(product.price?.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'))
   }, [product])
 
-  const priceThousand = product.price?.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+  // const priceThousand = product.price?.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
   // const decimals = product.price?.decimals.toFixed(2)
   // const dec = decimals * 100
 
@@ -50,9 +55,8 @@ const ProductDetail = () => {
               </div>
 
               <div className='detail__info-price'>
-                &#36; {priceThousand}
-                {/* <sup>{decimals === '0' ? '00' : decimals}</sup> */}
-                {/* <sup>{dec}</sup> */}
+                &#36; {amount}
+                <sup>{decimals < 10 ? `0${decimals}` : decimals}</sup>
               </div>
 
               <button type='button'>Comprar</button>

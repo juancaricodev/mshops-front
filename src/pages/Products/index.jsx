@@ -6,7 +6,7 @@ import './styles.scss'
 import ShippingIcon from '@img/ic_shipping.png'
 import Product from './components/Product'
 import productsService from '@services/products'
-import format from '@utils/formatAccents'
+import format from '@utils/functions/formatAccents'
 import Spinner from '@utils/components/Spinner'
 import NoMatch from './components/NoMatch'
 
