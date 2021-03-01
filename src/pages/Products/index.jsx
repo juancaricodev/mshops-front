@@ -8,12 +8,14 @@ import Product from './components/Product'
 import productsService from '@services/products'
 import format from '@utils/formatAccents'
 import Spinner from '@utils/components/Spinner'
+import NoMatch from './components/NoMatch'
 
 const Products = () => {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState({})
   const [query, setQuery] = useState()
   const [queryFormat, setQueryFormat] = useState()
   const [loading, setLoading] = useState(true)
+  const [noMatch, setNoMatch] = useState(false)
 
   const querySearch = new URLSearchParams(useLocation().search)
 
@@ -35,6 +37,12 @@ const Products = () => {
 
   useEffect(() => {
     Object.keys(products).length > 0 && setLoading(false)
+
+    if (Object.keys(products).length > 0 && !products.items.length > 0) {
+      setNoMatch(true)
+    } else {
+      setNoMatch(false)
+    }
   }, [products])
 
   return (
@@ -42,22 +50,24 @@ const Products = () => {
       {
         loading
           ? <Spinner />
-          : (
-            <ul>
-              {products.items.slice(0, 4).map((product) => (
-                <Product
-                  key={product.id}
-                  id={product.id}
-                  picture={product.picture}
-                  title={product.title}
-                  price={product.price.amount}
-                  freeShipping={product.free_shipping}
-                  ShippingIcon={ShippingIcon}
-                  location={product.address}
-                />
-              ))}
-            </ul>
-            )
+          : noMatch
+            ? <NoMatch />
+            : (
+              <ul>
+                {products.items.slice(0, 4).map((product) => (
+                  <Product
+                    key={product.id}
+                    id={product.id}
+                    picture={product.picture}
+                    title={product.title}
+                    price={product.price.amount}
+                    freeShipping={product.free_shipping}
+                    ShippingIcon={ShippingIcon}
+                    location={product.address}
+                  />
+                ))}
+              </ul>
+              )
       }
     </div>
   )
