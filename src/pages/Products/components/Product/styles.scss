@@ -21,9 +21,9 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: $space-1;
 
       &-price {
+        margin-bottom: $space-1;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -42,7 +42,7 @@
 
     &-location {
       font-size: $font-size-7;
-      color: $color-gray-dark;
+      color: $color-gray-medium;
     }
   }
 

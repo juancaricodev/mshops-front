@@ -18,6 +18,16 @@ ul, li, ol {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    color: $color-black;
+  }
+}
+
 .page-container {
   display: flex;
   justify-content: center;
