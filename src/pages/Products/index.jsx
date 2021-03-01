@@ -41,11 +41,9 @@ const Products = () => {
   useEffect(() => {
     Object.keys(products).length > 0 && setLoading(false)
 
-    if (!products.items?.length > 0) {
-      setNoMatch(true)
-    } else {
-      setNoMatch(false)
-    }
+    !products.items?.length > 0
+      ? setNoMatch(true)
+      : setNoMatch(false)
   }, [products])
 
   return (

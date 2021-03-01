@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import './styles.scss'
 import detailService from '@services/detail'
 import Spinner from '@utils/components/Spinner'
@@ -10,12 +10,16 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(true)
 
   const { id } = useParams()
+  const history = useHistory()
 
   useEffect(() => {
     detailService
       .getId(id)
       .then(res => setProduct(res.item))
-      .catch(err => console.error(err))
+      .catch(err => {
+        history.push(`/${id}`)
+        return console.error(err)
+      })
   }, [])
 
   useEffect(() => {
