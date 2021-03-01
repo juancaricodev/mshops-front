@@ -27,14 +27,14 @@ const Products = () => {
 
     queryFormat && productsService
       .getAll(queryFormat)
-      .then(res => setProducts(res.items))
+      .then(res => setProducts(res))
       .catch(err => console.error(err))
 
     return () => setQuery()
   }, [querySearch])
 
   useEffect(() => {
-    products.length > 0 && setLoading(false)
+    Object.keys(products).length > 0 && setLoading(false)
   }, [products])
 
   return (
@@ -44,7 +44,7 @@ const Products = () => {
           ? <Spinner />
           : (
             <ul>
-              {products.slice(0, 4).map((product) => (
+              {products.items.slice(0, 4).map((product) => (
                 <Product
                   key={product.id}
                   id={product.id}
