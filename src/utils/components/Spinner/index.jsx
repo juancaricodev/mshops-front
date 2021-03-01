@@ -4,7 +4,9 @@ import './styles.scss'
 
 const Spinner = () => {
   return (
-    <div className='spinner' />
+    <div className='spinner-container'>
+      <div className='spinner' />
+    </div>
   )
 }
 

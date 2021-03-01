@@ -1,19 +1,27 @@
-.spinner {
-  border: 15px solid rgba($color: $color-black, $alpha: 0.1);
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border-left-color: $color-blue;
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 100px;
 
-  animation: spin 1s ease infinite;
-}
+  .spinner {
+    width: 100px;
+    height: 100px;
+    border: 15px solid rgba($color: $color-black, $alpha: 0.1);
+    border-radius: 50%;
+    border-left-color: $color-blue;
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
+    animation: spin 1s ease infinite;
   }
 
-  100% {
-    transform: rotate(360deg);
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }
