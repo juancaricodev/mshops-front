@@ -13,10 +13,12 @@ const NotFound = () => {
         No hay rutas que coincidan con: <code>{location.pathname}</code>
       </div>
       <div className='not-found__subtitle'>
-        Intenta llendo a la{' '}
+        Regresa a la{' '}
         <Link className='link' to='/'>
-          Página Principal
+          P&aacute;gina Principal
         </Link>
+        {' '}
+        o realiza alguna b&uacute;squeda
       </div>
     </div>
   )
