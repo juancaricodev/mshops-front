@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
 import { Link } from 'react-router-dom'
+
+import Divider from '@svgComponents/Divider'
 import './styles.scss'
 
 const Breadcrumb = ({ categories }) => {
@@ -20,7 +22,7 @@ const Breadcrumb = ({ categories }) => {
                 {category}
               </Link>
             </li>
-          )).reduce((prev, curr) => [prev, '>', curr])
+          )).reduce((prev, curr) => [prev, <Divider key />, curr])
         }
       </ul>
     </div>
