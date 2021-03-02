@@ -6,9 +6,10 @@ import './styles.scss'
 import ShippingIcon from '@img/ic_shipping.png'
 import Product from './components/Product'
 import productsService from '@services/products'
-import format from '@utils/formatAccents'
+import format from '@utils/functions/formatAccents'
 import Spinner from '@utils/components/Spinner'
 import NoMatch from './components/NoMatch'
+import Breadcrumb from '@utils/components/Breadcrumb'
 
 const Products = () => {
   const [products, setProducts] = useState({})
@@ -41,37 +42,38 @@ const Products = () => {
   useEffect(() => {
     Object.keys(products).length > 0 && setLoading(false)
 
-    if (!products.items?.length > 0) {
-      setNoMatch(true)
-    } else {
-      setNoMatch(false)
-    }
+    !products.items?.length > 0
+      ? setNoMatch(true)
+      : setNoMatch(false)
   }, [products])
 
   return (
-    <div className='products'>
-      {
-        loading
-          ? <Spinner />
-          : noMatch
-            ? <NoMatch />
-            : (
-              <ul>
-                {products.items.slice(0, 4).map((product) => (
-                  <Product
-                    key={product.id}
-                    id={product.id}
-                    picture={product.picture}
-                    title={product.title}
-                    price={product.price.amount}
-                    freeShipping={product.free_shipping}
-                    ShippingIcon={ShippingIcon}
-                    location={product.address}
-                  />
-                ))}
-              </ul>
-              )
-      }
+    <div className='products-container'>
+      <Breadcrumb categories={products?.categories} />
+      <div className='products'>
+        {
+          loading
+            ? <Spinner />
+            : noMatch
+              ? <NoMatch />
+              : (
+                <ul>
+                  {products.items.slice(0, 4).map((product) => (
+                    <Product
+                      key={product.id}
+                      id={product.id}
+                      picture={product.picture}
+                      title={product.title}
+                      price={product.price.amount}
+                      freeShipping={product.free_shipping}
+                      ShippingIcon={ShippingIcon}
+                      location={product.address}
+                    />
+                  ))}
+                </ul>
+                )
+        }
+      </div>
     </div>
   )
 }
