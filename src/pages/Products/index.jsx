@@ -9,6 +9,7 @@ import productsService from '@services/products'
 import format from '@utils/functions/formatAccents'
 import Spinner from '@utils/components/Spinner'
 import NoMatch from './components/NoMatch'
+import Breadcrumb from '@utils/components/Breadcrumb'
 
 const Products = () => {
   const [products, setProducts] = useState({})
@@ -47,29 +48,32 @@ const Products = () => {
   }, [products])
 
   return (
-    <div className='products'>
-      {
-        loading
-          ? <Spinner />
-          : noMatch
-            ? <NoMatch />
-            : (
-              <ul>
-                {products.items.slice(0, 4).map((product) => (
-                  <Product
-                    key={product.id}
-                    id={product.id}
-                    picture={product.picture}
-                    title={product.title}
-                    price={product.price.amount}
-                    freeShipping={product.free_shipping}
-                    ShippingIcon={ShippingIcon}
-                    location={product.address}
-                  />
-                ))}
-              </ul>
-              )
-      }
+    <div className='products-container'>
+      <Breadcrumb />
+      <div className='products'>
+        {
+          loading
+            ? <Spinner />
+            : noMatch
+              ? <NoMatch />
+              : (
+                <ul>
+                  {products.items.slice(0, 4).map((product) => (
+                    <Product
+                      key={product.id}
+                      id={product.id}
+                      picture={product.picture}
+                      title={product.title}
+                      price={product.price.amount}
+                      freeShipping={product.free_shipping}
+                      ShippingIcon={ShippingIcon}
+                      location={product.address}
+                    />
+                  ))}
+                </ul>
+                )
+        }
+      </div>
     </div>
   )
 }
