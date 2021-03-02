@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
+import { Link } from 'react-router-dom'
 import './styles.scss'
 
 const Breadcrumb = ({ categories }) => {
@@ -15,7 +16,9 @@ const Breadcrumb = ({ categories }) => {
         {
           categoryList?.map((category, index) => (
             <li key={index}>
-              {category}
+              <Link to={`/items?search=${category}`}>
+                {category}
+              </Link>
             </li>
           )).reduce((prev, curr) => [prev, '>', curr])
         }
