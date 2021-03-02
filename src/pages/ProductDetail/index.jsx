@@ -38,7 +38,7 @@ const ProductDetail = () => {
 
   return (
     <>
-      <Breadcrumb />
+      <Breadcrumb categories={product.categories} />
       <div className='detail'>
         {loading
           ? <Spinner />

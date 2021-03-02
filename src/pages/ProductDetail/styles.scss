@@ -47,6 +47,9 @@
 
     button {
       @include btn($color-blue, $color-white);
+      &:hover {
+        filter: brightness(0.8);
+      }
     }
   }
 

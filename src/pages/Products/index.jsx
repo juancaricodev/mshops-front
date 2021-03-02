@@ -49,7 +49,7 @@ const Products = () => {
 
   return (
     <div className='products-container'>
-      <Breadcrumb />
+      <Breadcrumb categories={products?.categories} />
       <div className='products'>
         {
           loading
