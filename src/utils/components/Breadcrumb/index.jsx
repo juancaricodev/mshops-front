@@ -10,7 +10,7 @@ const Breadcrumb = ({ categories }) => {
 
   useEffect(() => {
     setCategoryList(categories)
-  })
+  }, [categories])
 
   return (
     <div className='breadcrumb'>
