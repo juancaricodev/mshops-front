@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import './styles.scss'
 
@@ -22,16 +22,14 @@ const route = [
 ]
 
 const Breadcrumb = () => {
-  const [routes, setRoutes] = useState(route)
-
   return (
     <div className='breadcrumb'>
       <ul>
-        {routes.map((element) => (
+        {route.map((element) => (
           <li key={element.id}>
             {element.name}
           </li>
-        )).reduce((prev, curr) => [prev, '> ', curr])}
+        )).reduce((prev, curr) => [prev, '>', curr])}
       </ul>
     </div>
   )
