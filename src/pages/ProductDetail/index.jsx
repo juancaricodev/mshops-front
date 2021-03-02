@@ -35,10 +35,6 @@ const ProductDetail = () => {
       .then(res => setAmount(res))
   }, [product])
 
-  // const priceThousand = product.price?.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-  // const decimals = product.price?.decimals.toFixed(2)
-  // const dec = decimals * 100
-
   return (
     <div className='detail'>
       {loading
