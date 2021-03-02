@@ -1,11 +1,11 @@
 .breadcrumb {
   width: $cont-width;
   margin: $space-2 0;
-  font-size: $font-size-6;
   color: $color-gray-medium;
+
   ul {
     display: flex;
-    align-self: center;
+    align-items: center;
 
     li {
       padding: 0 10px;
@@ -16,6 +16,11 @@
 
       &:last-child {
         font-weight: 700;
+      }
+
+      a {
+        font-size: $font-size-6;
+        color: $color-gray-medium;
       }
     }
   }
