@@ -1,10 +1,11 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
+import { formatAmount } from '@utils/functions/formatNumbers'
 import './styles.scss'
 
 const Product = ({ id, picture, title, price, freeShipping, ShippingIcon, location }) => {
-  const priceThousand = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+  const priceThousand = formatAmount(price)
 
   return (
     <li className='product'>
