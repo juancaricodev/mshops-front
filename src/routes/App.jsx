@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 
 import {
   BrowserRouter as Router,
@@ -8,22 +8,26 @@ import {
 
 import Home from '@pages/Home'
 import Layout from '@layout/Layout'
-import Products from '@pages/Products'
-import ProductDetail from '@pages/ProductDetail'
 import NotFound from '@pages/NotFound'
+import Spinner from '@utils/components/Spinner'
+
+const Products = lazy(() => import('@pages/Products'))
+const ProductDetail = lazy(() => import('@pages/ProductDetail'))
 
 const App = () => {
   return (
-    <Router>
-      <Layout>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/items' component={Products} />
-          <Route exact path='/items/:id' component={ProductDetail} />
-          <Route component={NotFound} />
-        </Switch>
-      </Layout>
-    </Router>
+    <Suspense fallback={<Spinner />}>
+      <Router>
+        <Layout>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/items' component={Products} />
+            <Route exact path='/items/:id' component={ProductDetail} />
+            <Route component={NotFound} />
+          </Switch>
+        </Layout>
+      </Router>
+    </Suspense>
   )
 }
 
