@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Suspense, lazy } from 'react'
 
 import { useLocation, useHistory } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
@@ -10,8 +10,9 @@ import productsService from '@services/products'
 import format from '@utils/functions/formatAccents'
 import capitalizeString from '@utils/functions/capitalizeString'
 import Spinner from '@utils/components/Spinner'
-import NoMatch from './components/NoMatch'
 import Breadcrumb from '@utils/components/Breadcrumb'
+
+const NoMatch = lazy(() => import('./components/NoMatch'))
 
 const Products = () => {
   const [products, setProducts] = useState({})
@@ -52,38 +53,40 @@ const Products = () => {
   }, [products])
 
   return (
-    <div className='products-container'>
-      <Helmet>
-        <title>{`${query && capitalizeString(query)} | Mercado Libre - by: juancaricodev`}</title>
-        <meta name='description' content={`Encuentra ${query && capitalizeString(query)} en MercadoLibre.com.co! Entre y conozca nuestras increíbles ofertas y promociones. Descubre la mejor forma de comprar online.`} />
-      </Helmet>
+    <Suspense fallback={<Spinner />}>
+      <div className='products-container'>
+        <Helmet>
+          <title>{`${query && capitalizeString(query)} | Mercado Libre - by: juancaricodev`}</title>
+          <meta name='description' content={`Encuentra ${query && capitalizeString(query)} en MercadoLibre.com.co! Entre y conozca nuestras increíbles ofertas y promociones. Descubre la mejor forma de comprar online.`} />
+        </Helmet>
 
-      <Breadcrumb categories={products?.categories} />
-      <div className='products'>
-        {
-          loading
-            ? <Spinner />
-            : noMatch
-              ? <NoMatch />
-              : (
-                <ul>
-                  {products.items.slice(0, 4).map((product) => (
-                    <Product
-                      key={product.id}
-                      id={product.id}
-                      picture={product.picture}
-                      title={product.title}
-                      price={product.price.amount}
-                      freeShipping={product.free_shipping}
-                      ShippingIcon={ShippingIcon}
-                      location={product.address}
-                    />
-                  ))}
-                </ul>
-                )
-        }
+        <Breadcrumb categories={products?.categories} />
+        <div className='products'>
+          {
+            loading
+              ? <Spinner />
+              : noMatch
+                ? <NoMatch />
+                : (
+                  <ul>
+                    {products.items.slice(0, 4).map((product) => (
+                      <Product
+                        key={product.id}
+                        id={product.id}
+                        picture={product.picture}
+                        title={product.title}
+                        price={product.price.amount}
+                        freeShipping={product.free_shipping}
+                        ShippingIcon={ShippingIcon}
+                        location={product.address}
+                      />
+                    ))}
+                  </ul>
+                  )
+          }
+        </div>
       </div>
-    </div>
+    </Suspense>
   )
 }
 
