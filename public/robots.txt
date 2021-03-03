@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mshops-juancaricodev.netlify.app/sitemap.xml
