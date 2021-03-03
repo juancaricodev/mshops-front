@@ -56,26 +56,26 @@ const ProductDetail = () => {
               </section>
 
               <section className='detail__info'>
-                <div className='detail__info-status'>
+                <h4 className='detail__info-status'>
                   <span>{product.condition}</span> - {product.sold_quantity} vendidos
-                </div>
+                </h4>
 
-                <div className='detail__info-title'>
+                <h1 className='detail__info-title'>
                   {product.title}
-                </div>
+                </h1>
 
-                <div className='detail__info-price'>
+                <h2 className='detail__info-price'>
                   &#36; {amount}
                   <sup>{decimals < 10 ? `0${decimals}` : decimals}</sup>
-                </div>
+                </h2>
 
                 <button type='button'>Comprar</button>
               </section>
 
               <section className='detail__description'>
-                <div className='detail__description-title'>Descipci&oacute;n del producto</div>
+                <h3 className='detail__description-title'>Descipci&oacute;n del producto</h3>
 
-                <div className='detail__description-content'>{product.description}</div>
+                <h4 className='detail__description-content'>{product.description}</h4>
               </section>
             </>
             )}

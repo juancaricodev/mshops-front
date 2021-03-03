@@ -30,6 +30,11 @@
         gap: $space-3;
         font-size: $font-size-3;
 
+        h1 {
+          font-size: $font-size-3;
+          font-weight: 400;
+        }
+
         img {
           height: 18px;
         }
@@ -37,12 +42,16 @@
 
       &-title {
         font-size: $font-size-4;
+        font-weight: 400;
       }
     }
 
     &-location {
-      font-size: $font-size-7;
-      color: $color-gray-medium;
+      h3 {
+        font-size: $font-size-7;
+        font-weight: 400;
+        color: $color-gray-medium;
+      }
     }
   }
 

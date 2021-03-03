@@ -11,9 +11,13 @@ const Home = () => {
         <meta name='description' content='La comunidad de compra y venta online más grande de América Latina.' />
       </Helmet>
 
-      <p>
+      <h1>
         ¡Bienvenidos a Mercado Libre!
-      </p>
+      </h1>
+
+      <h2>
+        La comunidad de compra y venta online más grande de América Latina.
+      </h2>
     </div>
   )
 }
