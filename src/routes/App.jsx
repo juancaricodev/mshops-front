@@ -6,13 +6,13 @@ import {
   Route
 } from 'react-router-dom'
 
-import Home from '@pages/Home'
 import Layout from '@layout/Layout'
-import NotFound from '@pages/NotFound'
 import Spinner from '@utils/components/Spinner'
 
+const Home = lazy(() => import('@pages/Home'))
 const Products = lazy(() => import('@pages/Products'))
 const ProductDetail = lazy(() => import('@pages/ProductDetail'))
+const NotFound = lazy(() => import('@pages/NotFound'))
 
 const App = () => {
   return (
