@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
 import { useParams, useHistory } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
+
 import './styles.scss'
 import detailService from '@services/detail'
 import Spinner from '@utils/components/Spinner'
@@ -38,6 +40,11 @@ const ProductDetail = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{`${product?.title} | Mercado Libre - by: juancaricodev`}</title>
+        <meta name='description' content={`Cómpralo en Mercado Libre a $ ${amount}. Encuentra más productos de ${product.categories}.`} />
+      </Helmet>
+
       <Breadcrumb categories={product.categories} />
       <div className='detail'>
         {loading

@@ -49,8 +49,6 @@ const Products = () => {
       : setNoMatch(false)
   }, [products])
 
-  // const queryCapital = query?.charAt(0).toUpperCase() + query.slice(1)
-
   return (
     <div className='products-container'>
       <Helmet>
