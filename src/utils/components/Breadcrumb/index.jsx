@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { Link } from 'react-router-dom'
 
+import capitalizeString from '@utils/functions/capitalizeString'
 import Divider from '@svgComponents/Divider'
 import './styles.scss'
 
@@ -19,7 +20,7 @@ const Breadcrumb = ({ categories }) => {
           categoryList?.map((category, index) => (
             <li key={index}>
               <Link to={`/items?search=${category}`}>
-                {category}
+                {capitalizeString(category)}
               </Link>
             </li>
           )).reduce((prev, curr) => [prev, <Divider key />, curr])
