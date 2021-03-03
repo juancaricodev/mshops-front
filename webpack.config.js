@@ -81,14 +81,12 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: './public/robots.txt',
-          to: '/',
-          toType: 'dir'
+          context: path.resolve(__dirname, 'public'),
+          from: 'robots.txt'
         },
         {
-          from: './public/sitemap.xml',
-          to: '/',
-          toType: 'dir'
+          context: path.resolve(__dirname, 'public'),
+          from: 'sitemap.xml'
         }
       ]
     })
