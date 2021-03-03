@@ -33,13 +33,15 @@ const Products = () => {
     query && Promise.resolve(format(query))
       .then(res => setQueryFormat(res))
 
+    return () => setQuery()
+  }, [querySearch])
+
+  useEffect(() => {
     queryFormat && productsService
       .getAll(queryFormat)
       .then(res => setProducts(res))
       .catch(err => console.error(err))
-
-    return () => setQuery()
-  }, [querySearch])
+  }, [queryFormat])
 
   useEffect(() => {
     Object.keys(products).length > 0 && setLoading(false)
