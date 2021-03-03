@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
 import { useLocation, useHistory } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 import './styles.scss'
 import ShippingIcon from '@img/ic_shipping.png'
 import Product from './components/Product'
 import productsService from '@services/products'
 import format from '@utils/functions/formatAccents'
+import capitalizeString from '@utils/functions/capitalizeString'
 import Spinner from '@utils/components/Spinner'
 import NoMatch from './components/NoMatch'
 import Breadcrumb from '@utils/components/Breadcrumb'
@@ -47,8 +49,15 @@ const Products = () => {
       : setNoMatch(false)
   }, [products])
 
+  // const queryCapital = query?.charAt(0).toUpperCase() + query.slice(1)
+
   return (
     <div className='products-container'>
+      <Helmet>
+        <title>{`${query && capitalizeString(query)} | Mercado Libre - by: juancaricodev`}</title>
+        <meta name='description' content={`Encuentra ${query && capitalizeString(query)} en MercadoLibre.com.co! Entre y conozca nuestras increíbles ofertas y promociones. Descubre la mejor forma de comprar online.`} />
+      </Helmet>
+
       <Breadcrumb categories={products?.categories} />
       <div className='products'>
         {
