@@ -9,15 +9,25 @@ import Spinner from '@utils/components/Spinner'
 import { formatAmount, formatDecimals } from '@utils/functions/formatNumbers'
 import Breadcrumb from '@utils/components/Breadcrumb'
 
+/**
+ * ProducDetail
+ * Page rendered when a single product is consulted whether from the Products page or directly from URL with product id
+ * Contains Helmet for generating document head tags
+ */
 const ProductDetail = () => {
+  // State implemented for storing the product once fetched
   const [product, setProduct] = useState({})
+  // loading state set true when data hasn't been retrieved yet
   const [loading, setLoading] = useState(true)
+  // decimals and amount state implemented for formatting the corresponding incoming values
   const [decimals, setDecimals] = useState()
   const [amount, setAmount] = useState()
 
+  // { useParams, useHistory } -> react-router-dom hooks for interacting with the url state
   const { id } = useParams()
   const history = useHistory()
 
+  // Side effect executed to fetch the product data once the page is rendered
   useEffect(() => {
     detailService
       .getId(id)
@@ -28,6 +38,9 @@ const ProductDetail = () => {
       })
   }, [])
 
+  // Side effect watching on product state
+  // Handles the loading state when data is not fetched yet
+  // when product state gets the data, formats the amount and the decimals incoming values
   useEffect(() => {
     Object.keys(product).length > 0 && setLoading(false)
 
