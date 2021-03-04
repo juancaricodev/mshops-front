@@ -14,6 +14,12 @@ const Products = lazy(() => import('@pages/Products'))
 const ProductDetail = lazy(() => import('@pages/ProductDetail'))
 const NotFound = lazy(() => import('@pages/NotFound'))
 
+/**
+ * App
+ * Contains the whole application
+ * Implements React Router for handling the routes
+ * Implements lazy and Suspense for handling lazy loading and improve performance
+ */
 const App = () => {
   return (
     <Suspense fallback={<Spinner />}>

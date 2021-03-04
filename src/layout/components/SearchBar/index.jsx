@@ -9,7 +9,7 @@ import Search from '@img/ic_Search.png'
 /**
  * SearchBar
  *
- * Handles the url state by getting its search parameters
+ * Handles the url state by getting its search parameters and changing them according to the case
  */
 const SearchBar = () => {
   // State handled by input field
