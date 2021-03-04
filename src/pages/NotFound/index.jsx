@@ -5,7 +5,13 @@ import { Helmet } from 'react-helmet'
 
 import './styles.scss'
 
+/**
+ * NotFound
+ * Page to be rendered when no route is matched
+ * Contains Helmet for generating document head tags
+ */
 const NotFound = () => {
+  // react-router hook for accessing the current location object
   const location = useLocation()
 
   return (
