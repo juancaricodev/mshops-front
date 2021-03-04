@@ -3,6 +3,10 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import './styles.scss'
 
+/**
+ * Home page
+ * Contains Helmet for generating document head tags
+ */
 const Home = () => {
   return (
     <div className='home'>

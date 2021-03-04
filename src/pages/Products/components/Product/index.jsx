@@ -3,8 +3,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { formatAmount } from '@utils/functions/formatNumbers'
 import './styles.scss'
-
+/**
+ * Product
+ *
+ * Component rendered for each product
+ * @param {id, picture, title, price, freeShipping, ShippingIcon, location } props - Product data
+ */
 const Product = ({ id, picture, title, price, freeShipping, ShippingIcon, location }) => {
+  // formatAmount function implemented for formatting the incoming price
   const priceThousand = formatAmount(price)
 
   return (

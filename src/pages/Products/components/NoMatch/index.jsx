@@ -2,6 +2,10 @@ import React from 'react'
 
 import './styles.scss'
 
+/**
+ * NoMatch
+ * Component rendered from Products page when the query doesn't match any result from API
+ */
 const NoMatch = () => {
   return (
     <div className='no-match'>
