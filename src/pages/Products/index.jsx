@@ -40,7 +40,7 @@ const Products = () => {
   useEffect(() => {
     const queryString = querySearch.get('search')
 
-    queryString.length > 0
+    queryString
       ? setQuery(queryString)
       : history.push('/')
 

@@ -16,7 +16,7 @@ const NotFound = lazy(() => import('@pages/NotFound'))
 
 /**
  * App
- * Contains the whole application
+ * Contains the routes of the application
  * Implements React Router for handling the routes
  * Implements lazy and Suspense to handle lazy loading and improve performance
  */
