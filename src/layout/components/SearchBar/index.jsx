@@ -6,21 +6,33 @@ import './styles.scss'
 import Logo from '@img/Logo_ML.png'
 import Search from '@img/ic_Search.png'
 
+/**
+ * SearchBar
+ *
+ * Handles the url state by getting its search parameters
+ */
 const SearchBar = () => {
+  // State handled by input field
   const [search, setSearch] = useState('')
 
+  // { useLocation, useHistory } -> react-router-dom hooks for interacting with the url state
   const history = useHistory()
   const location = useLocation()
 
+  // using URLSearchParams for getting the 'search' param. of the url
   const searchQuery = new URLSearchParams(location.search).get('search')
 
+  // Side effect wathing on location.search (in url)
   useEffect(() => {
+    // When accessing to Products through url, sets the search field (input) as the search param. in the url
     location.pathname === '/items' && setSearch(searchQuery)
+    // When accessing to ProductDetail, cleans up the search field (input)
     location.pathname.includes('/items/') && setSearch('')
 
     return () => setSearch('')
   }, [location.search])
 
+  // onSumbit pushes the search string to the url as a query param.
   const handleSubmit = (e) => {
     e.preventDefault()
 
