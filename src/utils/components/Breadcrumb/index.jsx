@@ -7,9 +7,11 @@ import Divider from '@svgComponents/Divider'
 import './styles.scss'
 
 /**
- * Generates a breadcrumb from an array of categories
+ * Breadcrumb
  *
- * @prop {Array} categories - Array of categories to be mapped into a breadcrumb
+ * Generates a breadcrumb from an array of categories
+ * Every category of the breadcrumb is linked to the Products page, passing its name as search param.
+ * @param {Array} categories - Array of categories to be mapped into a breadcrumb
  */
 const Breadcrumb = ({ categories }) => {
   const [categoryList, setCategoryList] = useState()
