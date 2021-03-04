@@ -7,7 +7,7 @@
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "start": "webpack serve --mode development",
-    "start:dev": "yarn build:dev && npx serve dist -s"
+    "serve:dev": "yarn build:dev && npx serve dist -s"
   },
   "keywords": [
     "react",
