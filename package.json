@@ -50,5 +50,10 @@
     "extends": [
       "./node_modules/standard/eslintrc.json"
     ]
+  },
+  "standard": {
+    "globals": {
+      "fetch": false
+    }
   }
 }
