@@ -32,7 +32,7 @@ const Breadcrumb = ({ categories }) => {
                 {capitalizeString(category)}
               </Link>
             </li>
-          )).reduce((prev, curr) => [prev, <Divider key />, curr])
+          )).reduce((prev, curr, idx) => [prev, <Divider key={`divider-${idx}`} />, curr])
         }
       </ul>
     </div>

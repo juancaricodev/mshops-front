@@ -56,7 +56,8 @@ const Products = () => {
     queryFormat && productsService
       .getAll(queryFormat)
       .then(res => setProducts(res))
-      .catch(err => console.error(err))
+      .catch(err => console.error(`Error fetching products: ${err}`))
+      .finally(() => setLoading(false))
   }, [queryFormat])
 
   // Side effect watching on products state
