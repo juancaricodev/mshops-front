@@ -1,107 +1,69 @@
-import React, { useEffect, useState, Suspense, lazy } from 'react'
+import React, { useEffect, Suspense, lazy } from 'react'
 
 import { useLocation, useHistory } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
 import './styles.scss'
-import ShippingIcon from '@img/ic_shipping.png'
 import Product from './components/Product'
-import productsService from '@services/products'
-import formatAccents from '@utils/functions/formatAccents'
+import useProducts from '../../hooks/useProducts'
+import useQueryParam from '../../hooks/useQueryParam'
 import capitalizeString from '@utils/functions/capitalizeString'
 import Spinner from '@components/Spinner'
 import Breadcrumb from '@components/Breadcrumb'
 
 const NoMatch = lazy(() => import('./components/NoMatch'))
 
-/**
- * Products
- * Page rendered when a product is searched through the SearchBar component
- * Implements lazy loading for rendering NoMatch component only when needed
- */
 const Products = () => {
-  // State implemented for storing the products once fetched
-  const [products, setProducts] = useState({})
-  // Raw query, needs to be formatted erasing the accent marks
-  const [query, setQuery] = useState()
-  // Query formatted (accent marks deleted)
-  const [queryFormat, setQueryFormat] = useState()
-  // loading state set true when data hasn't been retrieved yet
-  const [loading, setLoading] = useState(true)
-  // noMatch state set true when query doesn't match any result
-  const [noMatch, setNoMatch] = useState(false)
-
-  // { useLocation, useHistory } -> react-router-dom hooks for interacting with url state
-  const querySearch = new URLSearchParams(useLocation().search)
+  const location = useLocation()
   const history = useHistory()
+  const query = useQueryParam('search')?.trim() || ''
+  const { data: products, loading, error } = useProducts(query)
 
-  // Side effect watching on querySearch (useLocation hook)
-  // Gets 'search' query param. and sets it to be formatted
   useEffect(() => {
-    const queryString = querySearch.get('search')
+    if (location.pathname === '/items' && !query) {
+      history.replace('/')
+    }
+  }, [location.pathname, query, history])
 
-    queryString
-      ? setQuery(queryString)
-      : history.push('/')
-
-    query && Promise.resolve(formatAccents(query))
-      .then(res => setQueryFormat(res))
-
-    return () => setQuery()
-  }, [querySearch])
-
-  // Side effect watching on queryFormat
-  // Once query is formatted, is executed for fetching products data
-  useEffect(() => {
-    queryFormat && productsService
-      .getAll(queryFormat)
-      .then(res => setProducts(res))
-      .catch(err => console.error(`Error fetching products: ${err}`))
-      .finally(() => setLoading(false))
-  }, [queryFormat])
-
-  // Side effect watching on products state
-  // Handlign loading state and noMatch state
-  useEffect(() => {
-    Object.keys(products).length > 0 && setLoading(false)
-
-    !products.items?.length > 0
-      ? setNoMatch(true)
-      : setNoMatch(false)
-  }, [products])
+  const items = products?.items || []
+  const noMatch = !loading && !error && query && items.length === 0
 
   return (
     <Suspense fallback={<Spinner />}>
       <div className='products-container'>
         <Helmet>
-          <title>{`${query && capitalizeString(query)} | Mercado Libre - by: juancaricodev`}</title>
-          <meta name='description' content={`Encuentra ${query && capitalizeString(query)} en MercadoLibre.com.co! Entre y conozca nuestras increíbles ofertas y promociones. Descubre la mejor forma de comprar online.`} />
+          <title>{`${query ? capitalizeString(query) : 'Productos'} | Mercado Libre - by: juancaricodev`}</title>
+          <meta
+            name='description'
+            content={`Encuentra ${query ? capitalizeString(query) : 'los mejores productos'} en MercadoLibre.com.co! Entre y conozca nuestras increíbles ofertas y promociones.`}
+          />
         </Helmet>
 
         <Breadcrumb categories={products?.categories} />
+
         <div className='products'>
-          {
-            loading
-              ? <Spinner />
-              : noMatch
-                ? <NoMatch />
-                : (
-                  <ul>
-                    {products.items.slice(0, 4).map((product) => (
-                      <Product
-                        key={product.id}
-                        id={product.id}
-                        picture={product.picture}
-                        title={product.title}
-                        price={product.price.amount}
-                        freeShipping={product.free_shipping}
-                        ShippingIcon={ShippingIcon}
-                        location={product.address}
-                      />
-                    ))}
-                  </ul>
-                  )
-          }
+          {loading && <Spinner />}
+          {error && (
+            <div className='products__error'>
+              <p>Ocurrió un error al cargar los productos. Por favor intenta de nuevo.</p>
+            </div>
+          )}
+          {!loading && !error && noMatch && <NoMatch />}
+          {!loading && !error && items.length > 0 && (
+            <ul>
+              {items.slice(0, 4).map((product) => (
+                <Product
+                  key={product.id}
+                  id={product.id}
+                  picture={product.picture}
+                  title={product.title}
+                  price={product.price.amount}
+                  freeShipping={product.free_shipping}
+                  location={product.address?.city_name || product.address?.state_name || ''}
+                />
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </Suspense>

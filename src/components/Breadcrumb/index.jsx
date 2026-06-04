@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import { Link } from 'react-router-dom'
 
@@ -6,34 +6,22 @@ import capitalizeString from '@utils/functions/capitalizeString'
 import Divider from '@svgComponents/Divider'
 import './styles.scss'
 
-/**
- * Breadcrumb
- *
- * Generates a breadcrumb from an array of categories
- * Every category of the breadcrumb is linked to the Products page, passing its name as search param.
- * @param {Array} categories - Array of categories to be mapped into a breadcrumb
- */
-const Breadcrumb = ({ categories }) => {
-  const [categoryList, setCategoryList] = useState()
-
-  // Side effect executed whten categories param. is received
-  // sets categoryList to be mapped for creating the breadcrumb
-  useEffect(() => {
-    setCategoryList(categories)
-  }, [categories])
+const Breadcrumb = ({ categories = [] }) => {
+  if (!categories.length) {
+    return null
+  }
 
   return (
     <div className='breadcrumb'>
       <ul>
-        {
-          categoryList?.map((category, index) => (
-            <li key={index}>
-              <Link to={`/items?search=${category}`}>
-                {capitalizeString(category)}
-              </Link>
-            </li>
-          )).reduce((prev, curr, idx) => [prev, <Divider key={`divider-${idx}`} />, curr])
-        }
+        {categories.map((category, index) => (
+          <li key={`${category}-${index}`}>
+            <Link to={`/items?search=${encodeURIComponent(category)}`}>
+              {capitalizeString(category)}
+            </Link>
+            {index < categories.length - 1 && <Divider />}
+          </li>
+        ))}
       </ul>
     </div>
   )

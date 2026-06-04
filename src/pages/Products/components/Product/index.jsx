@@ -2,15 +2,10 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 import { formatAmount } from '@utils/functions/formatNumbers'
+import ShippingIcon from '@img/ic_shipping.png'
 import './styles.scss'
-/**
- * Product
- *
- * Component rendered for each product
- * @param {id, picture, title, price, freeShipping, ShippingIcon, location } props - Product data
- */
-const Product = ({ id, picture, title, price, freeShipping, ShippingIcon, location }) => {
-  // formatAmount function implemented for formatting the incoming price
+
+const Product = ({ id, picture, title, price, freeShipping, location }) => {
   const priceThousand = formatAmount(price)
 
   return (
@@ -26,7 +21,7 @@ const Product = ({ id, picture, title, price, freeShipping, ShippingIcon, locati
           <Link to={`/items/${id}`}>
             <div className='product__content-description-price'>
               <h1>&#36; {priceThousand}</h1>
-              {freeShipping && <img src={ShippingIcon} alt='free shipping' />}
+              {freeShipping && <img src={ShippingIcon} alt='Envío gratis' />}
             </div>
             <h2 className='product__content-description-title'>{title}</h2>
           </Link>

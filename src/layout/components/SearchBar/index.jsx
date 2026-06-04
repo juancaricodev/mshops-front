@@ -2,41 +2,39 @@ import React, { useState, useEffect } from 'react'
 
 import { Link, useHistory, useLocation } from 'react-router-dom'
 
+import useQueryParam from '../../../hooks/useQueryParam'
 import './styles.scss'
 import Logo from '@img/Logo_ML.png'
 import Search from '@img/ic_Search.png'
 
-/**
- * SearchBar
- *
- * Handles the url state by getting its search parameters and changing them according to the case
- */
 const SearchBar = () => {
-  // State handled by input field
   const [search, setSearch] = useState('')
 
-  // { useLocation, useHistory } -> react-router-dom hooks for interacting with the url state
   const history = useHistory()
   const location = useLocation()
+  const searchQuery = useQueryParam('search') || ''
 
-  // using URLSearchParams for getting the 'search' param. of the url
-  const searchQuery = new URLSearchParams(location.search).get('search')
-
-  // Side effect wathing on location.search (in url)
   useEffect(() => {
-    // When accessing to Products through url, sets the search field (input) as the search param. in the url
-    location.pathname === '/items' && setSearch(searchQuery)
-    // When accessing to ProductDetail, cleans up the search field (input)
-    location.pathname.includes('/items/') && setSearch('')
+    if (location.pathname === '/items') {
+      setSearch(searchQuery)
+      return
+    }
 
-    return () => setSearch('')
-  }, [location.search])
+    if (location.pathname.startsWith('/items/')) {
+      setSearch('')
+      return
+    }
 
-  // onSumbit pushes the search string to the url as a query param.
+    setSearch('')
+  }, [location.pathname, searchQuery])
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    search.length > 0 && history.push(`/items?search=${search}`)
+    const trimmedSearch = search.trim()
+    if (trimmedSearch.length > 0) {
+      history.push(`/items?search=${encodeURIComponent(trimmedSearch)}`)
+    }
   }
 
   const searchChange = (e) => {
