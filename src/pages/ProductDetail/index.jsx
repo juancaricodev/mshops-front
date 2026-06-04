@@ -5,9 +5,9 @@ import { Helmet } from 'react-helmet'
 
 import './styles.scss'
 import detailService from '@services/detail'
-import Spinner from '@utils/components/Spinner'
 import { formatAmount, formatDecimals } from '@utils/functions/formatNumbers'
-import Breadcrumb from '@utils/components/Breadcrumb'
+import Spinner from '@components/Spinner'
+import Breadcrumb from '@components/Breadcrumb'
 
 /**
  * ProducDetail

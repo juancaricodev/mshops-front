@@ -9,8 +9,8 @@ import Product from './components/Product'
 import productsService from '@services/products'
 import formatAccents from '@utils/functions/formatAccents'
 import capitalizeString from '@utils/functions/capitalizeString'
-import Spinner from '@utils/components/Spinner'
-import Breadcrumb from '@utils/components/Breadcrumb'
+import Spinner from '@components/Spinner'
+import Breadcrumb from '@components/Breadcrumb'
 
 const NoMatch = lazy(() => import('./components/NoMatch'))
 

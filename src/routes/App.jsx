@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom'
 
 import Layout from '@layout/Layout'
-import Spinner from '@utils/components/Spinner'
+import Spinner from '@components/Spinner'
 
 const Home = lazy(() => import('@pages/Home'))
 const Products = lazy(() => import('@pages/Products'))
